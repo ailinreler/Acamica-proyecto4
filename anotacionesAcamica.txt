@@ -1,0 +1,144 @@
+Buena página de referencia de js:
+https://developer.mozilla.org
+
+Para agregar un id hacemos lo siguiente:
+
+var parrafo = document.querySelector('p');
+parrafo.id = 'un-parrafo';
+
+Para agregar una clase:
+parrafo.className = 'parrafo';
+
+parrafo.style.color = 'blue';
+parrafo.style.backgroundColor = 'tomato';
+
+Si quiero saber cuales son los estilos aplicados desde css a un elementos, no lo hago con la propiedad style. Esta propiedad me daria los estilos que fueron aplicados dinámicamente y los estilos que hayan sido agregados en la misma etiqueta.
+Para esto usamos la propiedad:
+window.getComputedStyle(parrafo);
+
+Crear elementos
+
+document.createElement('p');
+
+Con esto creamos un párrafo en el documento.
+
+Para posicionar los elementos dentro del DOM, hacemos los¿ siguiente (ejemplo con ul que ya existe y li, que vamos a crear):
+
+var ul = document.querySelector('ul');
+
+var nuevoLi = document.createElement('li');
+
+nuevoLi.textoContent = 'texto del li';
+
+ul.appendChild(nuevoLi);
+
+
+Callbacks
+
+Las callbacks son funciones que llaman a otras funciones.
+
+Ej:
+
+Tenemos por una lado esta función:
+
+function saludar(nombre){
+	console.log('Hola ' + nombre);
+}
+
+y por otro lado, tenemos esta funcion:
+
+function procesarInputUsuario(callback){
+	nombre = prompt('Ingresar nombre');
+	callback(saludar);
+}
+
+
+Lo que hacemos es entonces, llamar a procesarInputUsuario(saludar). Llamamos a la funcion, y le pasamos la función que se tendrá que ejecutar, una vez ejecutada la primera.
+
+
+Eventos:
+
+Para poder asociar eventos a elementos, lo hacemos con el método addEventListener.
+Ej:
+(primero guardamos en una variable el elemento al que queremos asociarle el evento).
+var el = document.getElementById('clickeame');
+
+Después le asociamos el evento y una callback:
+
+el.addEventListener('click', modificarTexto);
+
+Y acá planteamos la función que estamos pasando como callback:
+
+function modificarTexto(e){
+	e.target.textContent = 'cliqueado';
+}
+
+el e que pasamos como parámetro es el evento. El e.target nos trae el elemento al que fue asociado el evento.
+Esto lo usamos para no tener que volver a referenciar el mismo elemento otra vez dentro de la otra función.
+
+.textContent cambia el contenido del texto del elemento.
+
+
+Otros eventos:
+
+Cuando mantengo el click en un elemento
+.addEventListener('mousedown');
+
+Cuando levanto el click de un element
+.addEventListener('mouseup');
+
+Cuando el mouse está por encima de un elemento
+.addEventListener('mouseover');
+
+
+[
+
+	<input type="text" name="algo" value="">
+	getElementByName('algo');
+	Este método agarra el elemento según el atributo name.
+
+	Un input devuelve una lista de elementos, por lo que, 		lo que agarremos, va a depender de la posición en la 	que se encuentre.
+	En el caso del ejemplo del video lo agarra así:
+	document.getElementByName('algo')[0]
+	Y a esto le aplica el addEventListener
+]
+
+document.getElementByName('algo')[0].addEventListener('change', mostrarMensaje);
+
+function mostrarMensaje(e){
+	alert(e.target.value);
+}
+
+Para ver más eventos que podemos utilizar:
+https://developer.mozilla.org/es/docs/Web/Reference/Events
+
+
+jQuery
+
+jquery es una libreria de js.
+Una libreria es básicamente un archivo js que tiene funciones ya definidas.
+
+
+función ready:
+
+jQuery(document).ready(function(){});
+------- SON LO MISMO -------
+$(document).ready(function(){});
+
+$('h1').hide();
+$('h1').fadeIn();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
